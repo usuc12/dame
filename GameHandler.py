@@ -11,13 +11,15 @@ class GameHandler:
         y, x = self.get_cell(event.x, event.y, board)
         self.selected = [x, y]
 
-        board.draw_selected(x, y)
-
+        b = board.get_board()
+        for i in range(x, 0, -1):
+            if x - i >= 0 and y - i >= 0:
+                print(x - i, y - i)
         for i in range(8 - x):
-            newY, newX = self.get_cell(x + i, y + i, board)
-            self.newSelected = [newX, newY]
+            if x - i >= 0 and y - i >= 0:
+                print(x + i, y + i)
 
-        board.draw_selected(newX, newY)
+        
 
     def controls(): return  
 
