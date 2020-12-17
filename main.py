@@ -8,7 +8,4 @@ board.canvas.bind("<Button-1>", lambda event: gameHandler.select(event, board))
 
 x = board.get_board()
 
-for i in x:
-    print(i)
-
 board.canvas.mainloop()

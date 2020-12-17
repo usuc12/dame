@@ -8,17 +8,32 @@ class GameHandler:
         self.black_count = 0
 
     def select(self, event, board):
+        board.delete_selected()
         y, x = self.get_cell(event.x, event.y, board)
         self.selected = [x, y]
 
         b = board.get_board()
-        for i in range(x, 0, -1):
-            if x - i >= 0 and y - i >= 0:
-                print(x - i, y - i)
-        for i in range(8 - x):
-            if x - i >= 0 and y - i >= 0:
-                print(x + i, y + i)
+        all_selected = [[x, y]]
 
+        for i in range(x, 0, -1):                                               #check for all adjacent positions behind the piece \
+            if x - i >= 0 and y - i >= 0 or x + i <= 7 and y + i <= 7:
+                #print(x - i, y - i)
+                all_selected.append([x-i,y-i])
+        for i in range(8 - x):                                                  #check for all adjacent postions before the piece \
+            if x - i >= 0 and y - i >= 0 or x + i <= 7 and y + i <= 7:
+                #print(x + i, y + i)
+                all_selected.append([x+i, y+i])
+        for i in range(x, -1, -1):
+            if y + i >= 0 and y + i <= 7:
+                #print(x - i, y + i)
+                all_selected.append([x-i,y+i])
+        for i in range(1, y + 1):
+            if x + i >= 0 and x + i <= 7:
+                #print(x + i, y - i)
+                all_selected.append([x+i,y-i])
+        
+        for arr in all_selected:
+            board.draw_selected(arr[0], arr[1])
         
 
     def controls(): return  
