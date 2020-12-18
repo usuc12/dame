@@ -24,20 +24,6 @@ class Board:
             if self.board[i][j]:
                 self.s.append(self.canvas.create_oval(j+self.u*j+(self.u*0.05),i+self.u*i+(self.u*0.05),j+self.u*(j+1)-(self.u*0.05),i+self.u*(i+1)-(self.u*0.05),fill="#333D79" if self.board[i][j].get_player1() else "#A13941",outline="#333D79" if self.board[i][j].get_player1() else "#A13941"))
 
-        
-            #ry:
-            #    for m in range(8):
-            #        if m + i < 8 and self.board[i + m][j + m] == 0:
-            #            self.s.append(self.canvas.create_rectangle((j + m)+self.u*(j+ m),(i + m)+self.u*(i + m) ,(j+m + 1)+self.u*(j+m + 1),(i + m +1)+self.u*(i+m + 1),fill="#c9cbff",outline="#98acf8"))
-            #            self.s.append(self.canvas.create_oval(j+self.u*j+(self.u*0.05),i+self.u*i+(self.u*0.05),j+self.u*(j+1)-(self.u*0.05),i+self.u*(i+1)-(self.u*0.05),fill="#333D79" if self.board[i][j].get_player1() else "#A13941",outline="#333D79" if self.board[i][j].get_player1() else "#A13941"))
-            #            #self.s.append(self.canvas.create_oval((j+m)+self.u*(j+m)+(self.u*0.05),(i+m)+self.u*(i+m)+(self.u*0.05),(j + m)+self.u*(j+1 + m)-(self.u*0.05),(i+m)+self.u*(i+1 + m)-(self.u*0.05),fill="#333D79" if self.board[i][j].get_player1() else "#A13941",outline="#333D79" if self.board[i][j].get_player1() else "#A13941"))
-            #except: 
-            #    pass
-            #for m in range(8):
-            #    if i - m > 0 and self.board[i - m][j -m] == 0:
-            #        self.s.append(self.canvas.create_rectangle((j - m)+self.u*(j - m),(i - m)+self.u*(i - m) ,(j - m + 1)+self.u*(j - m + 1),(i - m + 1)+self.u*(i - m + 1),fill="#c9cbff",outline="#98acf8"))
-            #        self.s.append(self.canvas.create_oval(j+self.u*j+(self.u*0.05),i+self.u*i+(self.u*0.05),j+self.u*(j+1)-(self.u*0.05),i+self.u*(i+1)-(self.u*0.05),fill="#333D79" if self.board[i][j].get_player1() else "#A13941",outline="#333D79" if self.board[i][j].get_player1() else "#A13941"))
-            #        #self.s.append(self.canvas.create_oval((j+m)+self.u*(j+m)+(self.u*0.05),(i+m)+self.u*(i+m)+(self.u*0.05),(j + m)+self.u*(j+1 + m)-(self.u*0.05),(i+m)+self.u*(i+1 + m)-(self.u*0.05),fill="#333D79" if self.board[i][j].get_player1() else "#A13941",outline="#333D79" if self.board[i][j].get_player1() else "#A13941"))
 
     def draw_board(self):
         for i in range(self.n):
