@@ -10,9 +10,14 @@ class GameHandler:
     def select(self, event, board):
         board.delete_selected()
         y, x = self.get_cell(event.x, event.y, board)
-        self.selected = [x, y]
-
-        b = board.get_board()
+        if self.selected != None:
+            for coords in self.selected:
+                if  y == coords[1] and x == coords[0]:
+                    print('aaa')
+                else:
+                    self.selected = [[x, y]]
+        else:
+            self.selected = [[x, y]]
 
         #for i in range(x, 0, -1):                                               #check for all adjacent positions behind the piece \
         #    if x - i >= 0 and y - i >= 0 or x + i <= 7 and y + i <= 7:
@@ -34,29 +39,32 @@ class GameHandler:
         #for arr in all_selected:
         #    board.draw_selected(arr[0], arr[1])                #vlt später nützzlich
 
-        possible_moves = [[x,y]]
-
         board_arr = board.get_board()
         
-        
-        try:
-            if board_arr[y][x] != 0:
-                
+        if board_arr[y][x] != 0:
+
+            try:        
                 if board_arr[y-1][x-1] == 0 and board_arr[y][x].get_player1() == True:       #ist frei links oben und ist spieler 1
-                    possible_moves.append([x-1, y-1])
-                
+                    self.selected.append([x-1, y-1])
+            except: pass
+
+            try:
                 if board_arr[y+1][x-1] == 0 and board_arr[y][x].get_player1() == False:
-                    possible_moves.append([x-1,y+1])
+                    self.selected.append([x-1,y+1])
+            except: pass
 
+            try:
                 if board_arr[y-1][x+1] == 0 and board_arr[y][x].get_player1() == True:       #ist frei rechts oben und ist spieler 1
-                    possible_moves.append([x+1, y-1])
-                
-                if board_arr[y+1][x+1] == 0 and board_arr[y][x].get_player1() == False:
-                    possible_moves.append([x+1, y+1])
-                
-        except: pass
+                    self.selected.append([x+1, y-1])
+            except: pass
 
-        for coords in possible_moves:
+            try:
+                if board_arr[y+1][x+1] == 0 and board_arr[y][x].get_player1() == False:
+                    self.selected.append([x+1, y+1])
+            except: pass    
+        
+
+        for coords in self.selected:
             board.draw_selected(coords[0], coords[1])
         
         
