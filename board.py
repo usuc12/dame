@@ -18,7 +18,7 @@ class Board:
         self.draw_board()
     
     def draw_selected(self, j, i):
-        #if self.board[i][j]:
+        
         if i < 8 and i >= 0 and j < 8 and j >= 0:
             self.s.append(self.canvas.create_rectangle(j+self.u*j,i+self.u*i ,(j + 1)+self.u*(j+ 1),(i +1)+self.u*(i + 1),fill="#c9cbff",outline="#98acf8"))
             if self.board[i][j]:
@@ -38,6 +38,9 @@ class Board:
         
     def get_board(self):
         return self.board
+
+    def set_new_coords(self, coords, value):
+        self.board[coords[0]][coords[1]] = value
 
     def delete_selected(self):
         for m in self.s:

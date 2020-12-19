@@ -8,12 +8,16 @@ class GameHandler:
         self.black_count = 0
 
     def select(self, event, board):
+
+        board_arr = board.get_board()
+
         board.delete_selected()
         y, x = self.get_cell(event.x, event.y, board)
+        select = self.selected
         if self.selected != None:
             for coords in self.selected:
                 if  y == coords[1] and x == coords[0]:
-                    print('aaa')
+                    self.move_piece(board_arr[select[0][1]][select[0][0]], [y,x], board)
                 else:
                     self.selected = [[x, y]]
         else:
@@ -39,7 +43,7 @@ class GameHandler:
         #for arr in all_selected:
         #    board.draw_selected(arr[0], arr[1])                #vlt später nützzlich
 
-        board_arr = board.get_board()
+        
         
         if board_arr[y][x] != 0:
 
@@ -68,7 +72,7 @@ class GameHandler:
             board.draw_selected(coords[0], coords[1])
         
         
-    def controls(): return  
+    def controls(self): return  
 
     def get_cell(self,x,y, board, cell=None):
         u = board.get_u()
@@ -81,5 +85,21 @@ class GameHandler:
 
     def draw_diff(self): return
 
+    def move_piece(self, piece, moveAt, board):
+        origin = piece.get_coords()
+
+        dx =  moveAt[1] - origin[1]
+        dy = moveAt[0] - origin[0]
+        newX = origin[1] + dx
+        newY = origin[0] + dy
+        piece.set_coords([newY, newX])
+        print(piece.get_coords())
+        board.set_new_coords([newY, newX], piece)
+        board.set_new_coords([origin[0], origin[1]], 0)
+
+        board.draw_board()
+
+        self.selected = []
+        
 
     def check_moves(self): return
